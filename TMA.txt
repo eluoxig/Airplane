@@ -1,0 +1,487 @@
+192.168.1.200> deb Equipment=1,AuxPlugInUnit=rul1,DeviceGroup=ru,RfPort=R
+
+161125-10:09:34 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+Deblock following 1 MOs ?
+===================================================================================
+  465  Equipment=1,AuxPlugInUnit=rul1,DeviceGroup=ru,RfPort=R
+===================================================================================
+Deblock 1 MOs. Are you Sure [y/n] ? y
+
+============================================================================================================
+  Id   MO                                                            administrativeState  Result
+============================================================================================================
+  465  AuxPlugInUnit=rul1,DeviceGroup=ru,RfPort=R                    1                    >>> Set.
+============================================================================================================
+Total: 1 MOs attempted, 1 MOs set
+
+192.168.1.200> lst 465
+
+161125-10:09:43 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+===================================================================================
+Proxy  Adm State     Op. State     MO
+===================================================================================
+  465  1 (UNLOCKED)  1 (ENABLED)   Equipment=1,AuxPlugInUnit=rul1,DeviceGroup=ru,RfPort=R
+===================================================================================
+Total: 1 MOs
+
+192.168.1.200> cr Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1
+
+161125-10:10:09 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+
+Attribute 1 of 1, anuType (enumRef:AntNearUnit):
+   Enter one of the following integers: 0:IUANT, 1:ASC, 2:ERET: 0
+
+>>>  [Proxy ID = 2052] MO name :ManagedElement=1,Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1
+
+192.168.1.200> lset Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1 iuantDeviceType 2
+
+161125-10:10:30 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+Set iuantDeviceType on following 1 MOs ?
+===================================================================================
+ 2052  Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1
+===================================================================================
+Set iuantDeviceType on 1 MOs. Are you Sure [y/n] ? y
+
+============================================================================================================
+   Id  MO                                                            iuantDeviceType      Result
+============================================================================================================
+ 2052  AntennaUnitGroup=1,AntennaNearUnit=1                          2                    >>> Set.
+============================================================================================================
+Total: 1 MOs attempted, 1 MOs set
+
+192.168.1.200> set Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1 rfPortRef ManagedElement=1,Equipment=1,AuxPlugInUnit=rul1,DeviceGroup=ru,RfPort=R
+
+161125-10:12:01 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+Set rfPortRef on following 1 MOs ?
+===================================================================================
+ 2052  Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1
+===================================================================================
+Set rfPortRef on 1 MOs. Are you Sure [y/n] ? y
+
+============================================================================================================
+   Id  MO                                                            rfPortRef            Result
+============================================================================================================
+ 2052  AntennaUnitGroup=1,AntennaNearUnit=1                          465                  >>> Set.
+============================================================================================================
+Total: 1 MOs attempted, 1 MOs set
+
+192.168.1.200> lhsh BXP_0 antp devcap 128
+
+161125-10:12:26 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+$ lhsh BXP_0 antp devcap 128
+AddressInfo: clientRef=10, serverRef=300
+ANTP_GET_DEVICE_CAPABILITIES_CFM: numberOfCapabilities=4
+  ANTP_CAP_DEVICE_DC_SUPPLY:
+  ANTP_FIXED_VOLTAGE: nbrOfVolt=1
+  voltage[0]=300,
+
+  ANTP_CAP_DEVICE_ANU_DATA: baudrate=32768
+  ANTP_CAP_DEVICE_ANU_CONNECT: anuType=1
+  ANTP_CAP_DEVICE_AISG_DEVICE_SCAN: baudrate=0007
+$
+
+192.168.1.200> lhsh BXP_0 antp volt 128 1 300
+
+161125-10:12:43 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+$ lhsh BXP_0 antp volt 128 1 300
+ANTP_CONFIG_VOLTAGE_CFM: deviceId=128
+$
+
+192.168.1.200> lh ru sw g RetPower
+
+161125-10:13:00 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+=============================================================================================
+$ lhsh 000100/BXP_0 sw g RetPower
+0001BXP_0: on
+$
+
+192.168.1.200> lh ru sw s RetPower on
+
+161125-10:13:16 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+=============================================================================================
+$ lhsh 000100/BXP_0 sw s RetPower on
+$
+
+192.168.1.200> cr Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1,TmaSubUnit=1
+
+161125-10:13:35 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+
+Following attributes are optional. Enter attribute value or "d" for default.
+Once the MO is created, these attributes cannot be changed (they are restricted).
+
+Attribute 1 of 1, tmaType (enumRef:TmaType):
+   Enter one of the following integers: 0:TMA, 1:TMF: 0
+
+>>>  [Proxy ID = 2053] MO name :ManagedElement=1,Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1,TmaSubUnit=1
+
+192.168.1.200> set Equipment=1,AntennaUnitGroup=1,RfBranch=1 tmaRef Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1,TmaSubUnit=1
+
+161125-10:14:05 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+Set tmaRef on following 1 MOs ?
+===================================================================================
+  420  Equipment=1,AntennaUnitGroup=1,RfBranch=1
+===================================================================================
+Set tmaRef on 1 MOs. Are you Sure [y/n] ? y
+
+============================================================================================================
+   Id  MO                                                            tmaRef               Result
+============================================================================================================
+  420  AntennaUnitGroup=1,RfBranch=1                                 2053                 >>> Set.
+============================================================================================================
+Total: 1 MOs attempted, 1 MOs set
+
+192.168.1.200> cr Equipment=1,AntennaUnitGroup=1,AntennaUnit=1,AntennaSubunit=1
+
+161125-10:14:30 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+
+>>>  [Proxy ID = 2054] MO name :ManagedElement=1,Equipment=1,AntennaUnitGroup=1,AntennaUnit=1,AntennaSubunit=1
+
+192.168.1.200> cr Equipment=1,AntennaUnitGroup=1,AntennaUnit=1,AntennaSubunit=1,AuPort=1
+
+161125-10:14:52 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+
+>>>  [Proxy ID = 2055] MO name :ManagedElement=1,Equipment=1,AntennaUnitGroup=1,AntennaUnit=1,AntennaSubunit=1,AuPort=1
+
+192.168.1.200> set Equipment=1,AntennaUnitGroup=1,RfBranch=1 auPortRef Equipment=1,AntennaUnitGroup=1,AntennaUnit=1,AntennaSubunit=1,AuPort=1
+
+161125-10:15:17 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+Set auPortRef on following 1 MOs ?
+===================================================================================
+  420  Equipment=1,AntennaUnitGroup=1,RfBranch=1
+===================================================================================
+Set auPortRef on 1 MOs. Are you Sure [y/n] ? y
+
+============================================================================================================
+   Id  MO                                                            auPortRef            Result
+============================================================================================================
+  420  AntennaUnitGroup=1,RfBranch=1                                 2055                 >>> Set.
+============================================================================================================
+Total: 1 MOs attempted, 1 MOs set
+ 
+
+192.168.1.200> lh ru restart 3
+
+161125-10:17:15 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+=============================================================================================
+$ lhsh 000100/BXP_0 restart 3
+0001BXP_0: rcmd: lost contact with 'restart'
+$
+ 
+ 
+
+192.168.1.200> lset SystemFunctions=1,Licensing=1,OptionalFeatures=1,RetSupport=1 featureStateRetSupport 1
+
+161125-10:19:36 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+Set featureStateRetSupport on following 1 MOs ?
+===================================================================================
+  219  SystemFunctions=1,Licensing=1,OptionalFeatures=1,RetSupport=1
+===================================================================================
+Set featureStateRetSupport on 1 MOs. Are you Sure [y/n] ? y
+
+============================================================================================================
+   Id  MO                                                            featureStateRetSupport  Result
+============================================================================================================
+  219  Licensing=1,OptionalFeatures=1,RetSupport=1                   1                    >>> Set.
+============================================================================================================
+Total: 1 MOs attempted, 1 MOs set
+
+192.168.1.200> lset SystemFunctions=1,Licensing=1,OptionalFeatures=1,TmaSupport=1 featureStateTmaSupport 1
+
+161125-10:19:55 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+Set featureStateTmaSupport on following 1 MOs ?
+===================================================================================
+  200  SystemFunctions=1,Licensing=1,OptionalFeatures=1,TmaSupport=1
+===================================================================================
+Set featureStateTmaSupport on 1 MOs. Are you Sure [y/n] ? y
+
+============================================================================================================
+   Id  MO                                                            featureStateTmaSupport  Result
+============================================================================================================
+  200  Licensing=1,OptionalFeatures=1,TmaSupport=1                   1                    >>> Set.
+============================================================================================================
+Total: 1 MOs attempted, 1 MOs set
+
+192.168.1.200> lset SystemFunctions=1,Licensing=1,OptionalFeatures=1,RetCascading=1 featureStateRetCascading 1
+
+161125-10:20:15 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+Set featureStateRetCascading on following 1 MOs ?
+===================================================================================
+  191  SystemFunctions=1,Licensing=1,OptionalFeatures=1,RetCascading=1
+===================================================================================
+Set featureStateRetCascading on 1 MOs. Are you Sure [y/n] ? y
+
+============================================================================================================
+   Id  MO                                                            featureStateRetCascading  Result
+============================================================================================================
+  191  Licensing=1,OptionalFeatures=1,RetCascading=1                 1                    >>> Set.
+============================================================================================================
+Total: 1 MOs attempted, 1 MOs set
+
+192.168.1.200> lset SystemFunctions=1,Licensing=1,OptionalFeatures=1,RetConfigurationMgt=1 featureStateRetConfigurationMgt 1
+
+161125-10:20:35 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+Set featureStateRetConfigurationMgt on following 1 MOs ?
+===================================================================================
+  231  SystemFunctions=1,Licensing=1,OptionalFeatures=1,RetConfigurationMgt=1
+===================================================================================
+Set featureStateRetConfigurationMgt on 1 MOs. Are you Sure [y/n] ? y
+
+============================================================================================================
+   Id  MO                                                            featureStateRetConfigurationMgt  Result
+============================================================================================================
+  231  Licensing=1,OptionalFeatures=1,RetConfigurationMgt=1          1                    >>> Set.
+============================================================================================================
+Total: 1 MOs attempted, 1 MOs set
+
+ 
+192.168.1.200>  ldeb rfport
+
+161125-10:21:10 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+Deblock following 6 MOs ?
+===================================================================================
+  463  Equipment=1,AuxPlugInUnit=rul1,DeviceGroup=ru,RfPort=A
+  464  Equipment=1,AuxPlugInUnit=rul1,DeviceGroup=ru,RfPort=B
+  465  Equipment=1,AuxPlugInUnit=rul1,DeviceGroup=ru,RfPort=R
+  480  Equipment=1,AuxPlugInUnit=rul2,DeviceGroup=ru,RfPort=A
+  481  Equipment=1,AuxPlugInUnit=rul2,DeviceGroup=ru,RfPort=B
+  482  Equipment=1,AuxPlugInUnit=rul2,DeviceGroup=ru,RfPort=R
+===================================================================================
+Deblock 6 MOs. Are you Sure [y/n] ? y
+
+============================================================================================================
+  Id   MO                                                            administrativeState  Result
+============================================================================================================
+  463  AuxPlugInUnit=rul1,DeviceGroup=ru,RfPort=A                    1                    >>> Set.
+  464  AuxPlugInUnit=rul1,DeviceGroup=ru,RfPort=B                    1                    >>> Set.
+  465  AuxPlugInUnit=rul1,DeviceGroup=ru,RfPort=R                    1                    >>> Set.
+  480  AuxPlugInUnit=rul2,DeviceGroup=ru,RfPort=A                    1                    >>> Set.
+  481  AuxPlugInUnit=rul2,DeviceGroup=ru,RfPort=B                    1                    >>> Set.
+  482  AuxPlugInUnit=rul2,DeviceGroup=ru,RfPort=R                    1                    >>> Set.
+============================================================================================================
+Total: 6 MOs attempted, 6 MOs set
+
+ 
+
+192.168.1.200>  lh ru fui get devstat
+
+161125-10:21:55 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+=============================================================================================
+$ lhsh 000100/BXP_0 fui get devstat
+0001BXP_0: Board: RU HW: KRC 161 625/1, temp: 38.3 degC, gainTempComp: on
+0001BXP_0: Branch A:
+0001BXP_0:      mode:           {ModeNo}
+0001BXP_0:      capability:     {tx | rx | vswrAntSv | ulGainConf | }
+0001BXP_0:                                                      Status  Faulty
+0001BXP_0:      Antenna VSWR supervision:                       Off     No
+0001BXP_0:      Aux current supervision:                        -       -
+0001BXP_0:      Aux short circuit supervision:                  -       -
+0001BXP_0:      Port overload supervision:                      -       -
+0001BXP_0:      Internal LNA 1 supervision:                     -       -
+0001BXP_0:      Internal LNA 2 supervision:                     -       -
+0001BXP_0:      CC LNA supervision:                             -       -
+0001BXP_0:      Aux TMA LNA supervision:                        -       -
+0001BXP_0:      Feeder Connectivity Supervision:                -       -       VswrMeasFreq:   - kHz
+0001BXP_0:      sensitivity:    0 percent
+0001BXP_0:      crossConnect:   Out
+0001BXP_0:      gainUl:         0.0 dB (not bypassed) configured
+0001BXP_0: Branch B:
+0001BXP_0:      mode:           {ModeNo}
+0001BXP_0:      capability:     {tx | rx | vswrAntSv | ulGainConf | }
+0001BXP_0:                                                      Status  Faulty
+0001BXP_0:      Antenna VSWR supervision:                       Off     No
+0001BXP_0:      Aux current supervision:                        -       -
+0001BXP_0:      Aux short circuit supervision:                  -       -
+0001BXP_0:      Port overload supervision:                      -       -
+0001BXP_0:      Internal LNA 1 supervision:                     -       -
+0001BXP_0:      Internal LNA 2 supervision:                     -       -
+0001BXP_0:      CC LNA supervision:                             -       -
+0001BXP_0:      Aux TMA LNA supervision:                        -       -
+0001BXP_0:      Feeder Connectivity Supervision:                -       -       VswrMeasFreq:   - kHz
+0001BXP_0:      sensitivity:    0 percent
+0001BXP_0:      crossConnect:   Out
+0001BXP_0:      gainUl:         0.0 dB (not bypassed) configured
+0001BXP_0: RET port:
+0001BXP_0:                                                      Status  Faulty
+0001BXP_0:              Shortcircuit Supervision:               On      No
+0001BXP_0:              Voltage Supervision (AntVCC)            On      No
+0001BXP_0:              Current Supervision:                    -       -
+0001BXP_0:              curr:                   no RET current sensor found
+0001BXP_0:              Ret Port Power:                         On
+0001BXP_0:              volt (Ant Vcc):         29204 mV
+$
+
+192.168.1.200> lh ru fui set feedvolt 2 1
+
+161125-10:22:21 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+=============================================================================================
+$ lhsh 000100/BXP_0 fui set feedvolt 2 1
+0001BXP_0: Feeder voltage set to 17 Volt (Notice: no supervision started, and voltage not measured accurately)
+$
+ 
+ 
+
+ 
+192.168.1.200> lh ru restart 3
+
+161125-10:24:52 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+=============================================================================================
+$ lhsh 000100/BXP_0 restart 3
+0001BXP_0: rcmd: lost contact with 'restart'
+$
+ 
+
+192.168.1.200> st ru
+
+161125-10:25:44 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+===================================================================================
+Proxy  Adm State     Op. State     MO
+===================================================================================
+  313                1 (ENABLED)   Equipment=1,Subrack=1,Slot=1,PlugInUnit=1,GeneralProcessorUnit=1
+  458  1 (UNLOCKED)  1 (ENABLED)   Equipment=1,AuxPlugInUnit=rul1
+  461                1 (ENABLED)   Equipment=1,AuxPlugInUnit=rul1,DeviceGroup=ru
+  475  0 (LOCKED)    0 (DISABLED)  Equipment=1,AuxPlugInUnit=rul2
+  478                0 (DISABLED)  Equipment=1,AuxPlugInUnit=rul2,DeviceGroup=ru
+ 2052  1 (UNLOCKED)  0 (DISABLED)  Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1
+===================================================================================
+Total: 6 MOs
+
+ 
+
+ 
+192.168.1.200> st ru
+
+161125-10:26:03 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+===================================================================================
+Proxy  Adm State     Op. State     MO
+===================================================================================
+  313                1 (ENABLED)   Equipment=1,Subrack=1,Slot=1,PlugInUnit=1,GeneralProcessorUnit=1
+  458  1 (UNLOCKED)  1 (ENABLED)   Equipment=1,AuxPlugInUnit=rul1
+  461                1 (ENABLED)   Equipment=1,AuxPlugInUnit=rul1,DeviceGroup=ru
+  475  0 (LOCKED)    0 (DISABLED)  Equipment=1,AuxPlugInUnit=rul2
+  478                0 (DISABLED)  Equipment=1,AuxPlugInUnit=rul2,DeviceGroup=ru
+ 2052  1 (UNLOCKED)  0 (DISABLED)  Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1
+===================================================================================
+Total: 6 MOs
+
+192.168.1.200> bl 2052
+
+161125-10:26:11 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+Block following 1 MOs ?
+===================================================================================
+ 2052  Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1
+===================================================================================
+Block 1 MOs. Are you Sure [y/n] ? y
+
+============================================================================================================
+  Id   MO                                                            administrativeState  Result
+============================================================================================================
+ 2052  AntennaUnitGroup=1,AntennaNearUnit=1                          0                    >>> Set.
+============================================================================================================
+Total: 1 MOs attempted, 1 MOs set
+
+ 
+
+192.168.1.200> deb 2052
+
+161125-10:28:34 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+Deblock following 1 MOs ?
+===================================================================================
+ 2052  Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1
+===================================================================================
+Deblock 1 MOs. Are you Sure [y/n] ? y
+
+============================================================================================================
+  Id   MO                                                            administrativeState  Result
+============================================================================================================
+ 2052  AntennaUnitGroup=1,AntennaNearUnit=1                          1                    >>> Set.
+============================================================================================================
+Total: 1 MOs attempted, 1 MOs set
+
+
+
+
+
+192.168.1.200> st ru
+
+161125-10:37:04 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+===================================================================================
+Proxy  Adm State     Op. State     MO
+===================================================================================
+  313                1 (ENABLED)   Equipment=1,Subrack=1,Slot=1,PlugInUnit=1,GeneralProcessorUnit=1
+  458  1 (UNLOCKED)  1 (ENABLED)   Equipment=1,AuxPlugInUnit=rul1
+  461                1 (ENABLED)   Equipment=1,AuxPlugInUnit=rul1,DeviceGroup=ru
+  475  0 (LOCKED)    0 (DISABLED)  Equipment=1,AuxPlugInUnit=rul2
+  478                0 (DISABLED)  Equipment=1,AuxPlugInUnit=rul2,DeviceGroup=ru
+ 2052  1 (UNLOCKED)  1 (ENABLED)   Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1
+===================================================================================
+Total: 6 MOs
+
+
+192.168.1.200> get tma
+
+161125-10:37:12 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+=================================================================================================================
+200                                  SystemFunctions=1,Licensing=1,OptionalFeatures=1,TmaSupport=1
+=================================================================================================================
+TmaSupportId                         1
+featureStateTmaSupport               1 (ACTIVATED)
+keyIdTmaSupport                      CXC4010621
+licenseStateTmaSupport               1 (ENABLED)
+serviceStateTmaSupport               1 (OPERABLE)
+=================================================================================================================
+2053                                 Equipment=1,AntennaUnitGroup=1,AntennaNearUnit=1,TmaSubUnit=1
+=================================================================================================================
+TmaSubUnitId                         1
+availabilityStatus                   0 (NO_STATUS)
+dlAttenuation                        0
+dlTrafficDelay                       0
+iuantAntennaBearing                  0
+iuantAntennaInstalledMechanicalTilt  0
+iuantAntennaModelNumber
+iuantAntennaOperatingBand            0
+iuantAntennaOperatingGain            i[4] = 0 0 0 0
+iuantAntennaSerialNumber
+iuantBaseStationId
+iuantInstallationDate
+iuantInstallersId
+iuantSectorId
+iuantTmaSubunitFreqRangeRx           i[2] = 8800 9150
+iuantTmaSubunitFreqRangeTx           i[2] = 9250 9600
+iuantTmaSubunitGainRes               0
+iuantTmaSubunitMaxGain               48
+iuantTmaSubunitMinGain               48
+operationalState                     1 (ENABLED)
+reservedBy                           [1] =
+ >>> reservedBy = Equipment=1,AntennaUnitGroup=1,RfBranch=1
+subunitNumber                        1
+tmaType                              0 (TMA)
+tmfData                              Struct{6}
+ >>> 1.dlAttenuation = 0
+ >>> 2.dlTrafficDelay = 0
+ >>> 3.ifBandwidth = 0
+ >>> 4.ulAirFrequency = 0
+ >>> 5.ulFeederFrequency = 0
+ >>> 6.ulTrafficDelay = 0
+ulGain                               48
+ulTrafficDelay                       0
+userLabel
+=================================================================================================================
+Total: 2 MOs
+
+
+192.168.1.200> al
+
+161125-10:37:32 192.168.1.200 16.0s ERBS_NODE_MODEL_G_1_312 stopfile=/tmp/18192
+
+Connecting to 192.168.1.200:56834 (CorbaSecurity=OFF, corba_class=2, java=1.8.0_60, jacoms=R88L01, jacorb=R87C01)
+Trying file=C:/cygwin/home/CNBJDRWDP75+test/moshell_logfiles/logs_moshell/tempfiles/20161123-085258_14172/ior14172
+Resolving the alarm service in OMS...
+Simple Alarm Client initialized...
+Starting to retrieve active alarms
+Nr of active alarms are: 1
+====================================================================================================================
+Sever Specific Problem                    MO (Cause/AdditionalInfo)
+====================================================================================================================
+Maj   Contact to Default Router 0 Lost    Subrack=1,Slot=1,PlugInUnit=1,ExchangeTerminalIp=1,GigaBitEthernet=gbe-1,IpInterface=1 (DEFAULT_ROUTER_0 192.168.1.1)
+>>> Total: 1 Alarms (0 Critical, 1 Major)
+
